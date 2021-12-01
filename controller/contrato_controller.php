@@ -36,8 +36,7 @@ switch ($_REQUEST['func']) {
 		$contr =  $_REQUEST['contr'];
 		$id_cliente =  $_REQUEST['id_cliente'];
 		$id_contr =  @$_REQUEST['id_contr'];
-		$fimPagamento =  $_REQUEST['fimPagamento'];
-		($fimPagamento == '' ? $fimPagamento = NULL : $fimPagamento);
+		$fimPagamento =  ($_REQUEST['fimPagamento'] == '' ? NULL : $_REQUEST['fimPagamento']);
 		$arr_s = explode(",", $_REQUEST['arr_s']);
 		$arr_c = explode(",", $_REQUEST['arr_c']);
 
