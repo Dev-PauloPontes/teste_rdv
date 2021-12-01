@@ -14,21 +14,6 @@ switch ($_REQUEST['func']) {
 		$model->listContratoId($contr);
 		break;
 
-	case 'cont_c':
-		$id_contr =  $_REQUEST['id_contr'];
-		$arr_c = explode(",", $_REQUEST['arr_c']);
-		foreach ($arr_c as  $v) {
-			$model->updateBem_c($v, $id_contr);
-		}
-		break;
-
-	case 'scont':
-		$arr_s = explode(",", $_REQUEST['arr_s']);
-		foreach ($arr_s as  $v) {
-			$model->updateBem_s($v);
-		}
-		break;
-
 	case 'listBem':
 		$model->listBemContratoNull($_REQUEST['id']);
 		break;
