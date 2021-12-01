@@ -94,7 +94,7 @@ async function storeData() {
 
 	var arr_c = [];
 	$("#multiselect_to > option").each(function () {
-		arr_c.push(this.value);
+		arr_c.push(this.value); 
 	});
 
 	if (contr == 0) {
