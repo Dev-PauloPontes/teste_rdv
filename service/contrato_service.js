@@ -83,7 +83,7 @@ function confirmUpdate() {
 }
 
 /// REUNE OS DADOS DOS BENS
-async function storeContratos() {
+async function storeData() {
 	$("#loader").show();
 	contr = $('#contSel').val();
 
