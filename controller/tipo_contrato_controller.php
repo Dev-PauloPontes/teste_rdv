@@ -15,7 +15,7 @@ switch ($_REQUEST['func']) {
 		break;
 
 	case 'add':
-		$model->add($_REQUEST['nome_tipo_contrato'], $_REQUEST['cod_tipo_contrato'], $_REQUEST['meses'], $_REQUEST['valor'], $_REQUEST['valor_pos'], $_REQUEST['obs'], $_REQUEST['fimPagamento']);
+		$model->add($_REQUEST['nome_tipo_contrato'], $_REQUEST['cod_tipo_contrato'], $_REQUEST['meses'], $_REQUEST['valor'], $_REQUEST['valor_pos'], $_REQUEST['obs']);
 		break;
 
 	case 'del':

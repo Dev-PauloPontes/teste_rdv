@@ -235,6 +235,11 @@ function listContrato() {
 function erroForm(result_id) {
 	if (result_id >= 0) {
 		$("#ContratoAtualizado").modal('show');
+		if (id_url) {
+			$('#confirmContrato').text('Contrato atualizado com sucesso!');
+		} else {
+			$('#confirmContrato').text('Contrato cadastrado com sucesso!');
+		}
 	} else {
 		$("#erroContrato").modal('show');
 		$('#titleModalErro').text('Erro');

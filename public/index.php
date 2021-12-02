@@ -65,10 +65,10 @@
                                 <label>Observação</label>
                                 <textarea class="form-control" id="obs" name="obs" style="height: 100px"></textarea>
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label>Data fim pagamento</label>
                                 <input type="date" id="fimPagamento" name="fimPagamento" class="form-control">
-                            </div>
+                            </div> -->
                         </div>
                         <div class="modal-footer">
                             <input type="hidden" value="add" name="func">
@@ -155,7 +155,7 @@
             </div>
         </div>
 
-        <div id="ContratoAtualizado" class="modal fade">
+        <div id="end_Contrato" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <form>
@@ -165,8 +165,7 @@
 
                         </div>
                         <div class="modal-body">
-                            <input type="hidden" id="id_d" name="id" class="form-control">
-                            <p>Contrato Atualizado</p>
+                            <p id="mensage_e"></p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" onclick="confirmUpdate()" class="btn btn-secondary" data-bs-dismiss="modal">OK</button>

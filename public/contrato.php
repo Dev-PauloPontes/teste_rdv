@@ -173,47 +173,6 @@
                 </div>
             </div>
         </div>
-        <div id="semTipoContrato" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <form>
-                        <div class="modal-header">
-                            <h4 class="modal-title">Tipo de Contrato</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        </div>
-                        <div class="modal-body">
-                            <input type="hidden" id="id_d" name="id" class="form-control">
-                            <p>Selecione algum tipo de contrato</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <div id="semContrato" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <form>
-                        <div class="modal-header">
-                            <h4 class="modal-title">Contrato</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-
-                        </div>
-                        <div class="modal-body">
-                            <input type="hidden" id="id_d" name="id" class="form-control">
-                            <p>Selecione algum contrato</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
         <div id="semValidacao" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -239,13 +198,12 @@
                 <div class="modal-content">
                     <form>
                         <div class="modal-header">
-                            <h4 class="modal-title">Contrato Atualizado</h4>
+                            <h4 class="modal-title">Contrato</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 
                         </div>
                         <div class="modal-body">
-                            <input type="hidden" id="id_d" name="id" class="form-control">
-                            <p>Contrato Atualizado</p>
+                            <p id="confirmContrato"></p>
                         </div>
                         <div class="modal-footer">
                             <a href="JavaScript:void(0);" onclick="listContrato()" class="btn btn-secondary" data-dismiss="modal">OK</a>

@@ -17,7 +17,6 @@ class TipoContrato extends config
         $run = $stmt->execute();
         $rs = $stmt->fetchAll(PDO::FETCH_ASSOC);
         echo json_encode($rs);
-        
     }
 
     public function listClientes()
@@ -26,14 +25,14 @@ class TipoContrato extends config
         $run = $stmt->execute();
         $rs = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return  $rs;
-        
     }
 
-    public function add($nome_tipo_contrato, $cod_tipo_contrato, $meses, $valor, $valor_pos, $obs, $fimpag)
+    public function add($nome_tipo_contrato, $cod_tipo_contrato, $meses, $valor, $valor_pos, $obs)
     {
-        $sql = "INSERT INTO tipo_contrato( nome_tipo_contrato, cod_tipo_contrato, meses, valor, valor_pos, obs, data_encerramento) VALUES  (?,?,?,?,?,?,?)";
+        $sql = "INSERT INTO tipo_contrato( nome_tipo_contrato, cod_tipo_contrato, meses, valor, valor_pos, obs) 
+                VALUES  (?,?,?,?,?,?)";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([$nome_tipo_contrato, $cod_tipo_contrato, $meses, $valor, $valor_pos, $obs, $fimpag]);
+        $stmt->execute([$nome_tipo_contrato, $cod_tipo_contrato, $meses, $valor, $valor_pos, $obs]);
         if ($stmt->rowCount() > 0) {
             echo json_encode(array("statusCode" => 200));
         } else {
@@ -42,12 +41,12 @@ class TipoContrato extends config
     }
 
 
-    public function edit($id_tipo_contrato,$nome_tipo_contrato, $cod_tipo_contrato, $meses, $valor, $valor_pos, $obs, $fimpag = null)
-    {   
+    public function edit($id_tipo_contrato, $nome_tipo_contrato, $cod_tipo_contrato, $meses, $valor, $valor_pos, $obs, $fimpag = null)
+    {
         $sql = "UPDATE tipo_contrato SET nome_tipo_contrato = ?, cod_tipo_contrato = ?, meses = ?, valor = ?, valor_pos = ?, obs = ?, data_encerramento = ?  WHERE id_tipo_contrato = ? ";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([ $nome_tipo_contrato, $cod_tipo_contrato, $meses, $valor, $valor_pos, $obs, $fimpag, $id_tipo_contrato]);
-        
+        $stmt->execute([$nome_tipo_contrato, $cod_tipo_contrato, $meses, $valor, $valor_pos, $obs, $fimpag, $id_tipo_contrato]);
+
         if ($stmt->rowCount() > 0) {
             echo json_encode(array("statusCode" => 200));
         } else {
@@ -60,12 +59,11 @@ class TipoContrato extends config
         $sql = "DELETE FROM tipo_contrato WHERE id_tipo_contrato = ? ";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([$id_tipo_contrato]);
-        
+
         if ($stmt->rowCount() > 0) {
             echo json_encode(array("statusCode" => 200));
         } else {
             echo json_encode(array("statusCode" => 201));
         }
     }
-
 }

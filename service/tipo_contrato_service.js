@@ -11,8 +11,8 @@ $(document).on('click', '#btn-add', function (e) {
             var dataResult = JSON.parse(dataResult);
             if (dataResult.statusCode == 200) {
                 $('#add').modal('hide');
-                $("#ContratoAtualizado").modal('show');
-                // location.reload();
+                $("#end_Contrato").modal('show');
+                $('#mensage_e').text('Novo contrato incluído!');
             }
             else if (dataResult.statusCode == 201) {
                 alert("Nenhum dado alterado :/");
@@ -93,9 +93,9 @@ $(document).on('click', '#update', function (e) {
 
     if ($('#fimPagamento_u').val() != '' && fim_pagamento == '') {
         $('#confirmModal').modal('show')
-		$('#corpoModal').text('A data de fim pagamento foi preenchida. Confirma ação?');
+        $('#corpoModal').text('A data de fim pagamento foi preenchida. Confirma ação?');
         return
-	}
+    }
 
     if (fim_pagamento != '' && $('#fimPagamento_u').val() == '') {
         $('#confirmModal').modal('show')
@@ -115,7 +115,9 @@ function updateTipoContrato() {
             var dataResult = JSON.parse(dataResult);
             if (dataResult.statusCode == 200) {
                 $('#edit').modal('hide');
-                $("#ContratoAtualizado").modal('show');
+                $("#end_Contrato").modal('show');
+                $('#mensage_e').text('Contrato Atualizado!');
+
                 // location.reload();
             }
             else if (dataResult.statusCode == 201) {
@@ -153,11 +155,7 @@ $(document).ready(function () {
             },
             'hidden.bs.modal': function () {
                 if ($('.modal:visible').length > 0) {
-                    // restore the modal-open class to the body element, so that scrolling works
-                    // properly after de-stacking a modal.
-                    setTimeout(function () {
-                        $(document.body).addClass('modal-open');
-                    }, 0);
+                    $(document.body).addClass('modal-open');
                 }
             }
         });
