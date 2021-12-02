@@ -21,7 +21,7 @@
     <div class="container">
 
         <div class="row text-center">
-            <div class="col-12 ">
+            <div class="col-12">
                 <h2 id="title"></h2>
             </div>
         </div>

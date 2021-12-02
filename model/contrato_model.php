@@ -15,9 +15,11 @@ class Contrato extends config
     public function listContratoId($contr)
     {
         try {
-            $qr = '';
-            if ($contr > 0) $qr = 'WHERE id_tipo_contrato = ' . $contr;
-            $stmt = $this->pdo->prepare("SELECT * FROM tipo_contrato $qr;");
+            // $qr = '';
+            // if ($contr > 0) $qr = 'WHERE id_tipo_contrato = ' . $contr;
+            //$stmt = $this->pdo->prepare("SELECT * FROM tipo_contrato $qr;");
+            $sql = "SELECT * FROM tipo_contrato".( $contr > 0 ? "WHERE id_tipo_contrato = $contr;" : ";");
+            $stmt = $this->pdo->prepare($sql);
             $stmt->execute();
             $rs = $stmt->fetchAll(PDO::FETCH_ASSOC);
             echo json_encode($rs);
