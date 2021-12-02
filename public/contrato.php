@@ -21,8 +21,8 @@
     <div class="container">
 
         <div class="row text-center">
-            <div class="col-12">
-                <h2 id="title"></h2>
+            <div class="col-12 p-3">
+                <h2 style="height: 20px;" id="title"></h2>
             </div>
         </div>
         <hr>
@@ -214,7 +214,7 @@
             </div>
         </div>
 
-        <div id="semCliente" class="modal fade">
+        <div id="semValidacao" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <form>
@@ -224,8 +224,7 @@
 
                         </div>
                         <div class="modal-body">
-                            <input type="hidden" id="id_d" name="id" class="form-control">
-                            <p>Selecione algum cliente</p>
+                            <p id="messageValidacao"></p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>

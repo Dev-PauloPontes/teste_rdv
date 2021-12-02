@@ -161,7 +161,14 @@ async function listarDadosContrato(id_url) {
 // BOTAO SALVAR CHAMA MODAL DE CONFIRMACAO
 function confirmUpdate() {
 	if ($('#list').val() == 0) { // verifica cliente selecionado
-		$("#semCliente").modal('show'); return
+		$("#semValidacao").modal('show');
+		$('#messageValidacao').text('Selecione algum cliente').fadeIn();
+		return
+	}
+	if ($('#contSel').val() == 0) { // verifica cliente selecionado
+		$("#semValidacao").modal('show');
+		$('#messageValidacao').text('Selecione algum contrato').fadeIn();
+		return
 	}
 
 	$("#updateContrato").modal('show');
@@ -171,8 +178,8 @@ function confirmUpdate() {
 	} else {
 		$('#corpoModal').hide();
 	}
-
-	if (data_fim_contrato != null && $('#fimPagamento').val() == '') {
+	console.log(data_fim_contrato)
+	if (data_fim_contrato != null && $('#fimPagamento').val() == '' && id_url) {
 		$('#corpoModal').text('Deseja reativar o contrato?').fadeIn();
 	} else {
 		//	$('#corpoModal').hide();
@@ -231,21 +238,21 @@ function erroForm(result_id) {
 	} else {
 		$("#erroContrato").modal('show');
 		$('#titleModalErro').text('Erro');
-		$('#erro').text('Erro ao cadastrar os campos do contrato')
+		$('#erro').text('Erro ao cadastrar o contrato')
 		$("#loader").hide();
 	}
 }
 
-function erroUpdateBem(message) {
-	if (message == '') {
-		$("#loader").hide();
-	} else {
-		$("#erroContrato").modal('show');
-		$('#titleModalErro').text('Erro');
-		$('#erro').text('Erro ao cadastrar o(s) imei(s) do contrato')
-		$("#loader").hide();
-	}
-}
+// function erroUpdateBem(message) {
+// 	if (message == '') {
+// 		$("#loader").hide();
+// 	} else {
+// 		$("#erroContrato").modal('show');
+// 		$('#titleModalErro').text('Erro');
+// 		$('#erro').text('Erro ao cadastrar o(s) imei(s) do contrato')
+// 		$("#loader").hide();
+// 	}
+//}
 
 
 
