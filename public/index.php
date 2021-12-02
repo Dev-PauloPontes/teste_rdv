@@ -176,22 +176,18 @@
             </div>
         </div>
 
-        <div id="updateContrato" class="modal fade">
+        <div id="confirmModal" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <form>
                         <div class="modal-header">
                             <h4 class="modal-title">Atualizar Contrato? </h4>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">x</button>
-
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">x</button>
                         </div>
-                        <div class="modal-body">
-                            <input type="hidden" id="id_d" name="id" class="form-control">
-                            <p>Está irá Atualizar o contrato</p>
-                        </div>
+                        <div class="alert alert-danger" id="corpoModal" role="alert"></div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-bs-dismiss="modal">Cancelar</button>
-                            <button type="button" class="btn btn-dark" data-bs-dismiss="modal" onclick="updateContratos()">OK</button>
+                            <button type="button" class="btn btn-dark" onclick="updateTipoContrato()" data-bs-dismiss="modal">OK</button>
                         </div>
                     </form>
                 </div>

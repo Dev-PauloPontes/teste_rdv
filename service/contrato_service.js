@@ -4,6 +4,7 @@ var id_url = (url.search == '' ? '' : url.searchParams.get("id"));
 
 var erro = '';
 var textoCorpo = '';
+var data_fim_contrato = '';
 
 ///CARREGA COMBO CLIENTES
 async function listarClientes(id) {
@@ -68,19 +69,6 @@ async function listarBensContr(id, contr) {
 
 }
 
-// BOTAO SALVAR CHAMA MODAL DE CONFIRMACAO
-function confirmUpdate() {
-	if ($('#list').val() == 0) { // verifica cliente selecionado
-		$("#semCliente").modal('show'); return
-	}
-
-	if ($('#fimPagamento').val() != '') {
-		$('#corpoModal').text('A data de fim do contrato foi preenchida. Confirma ação ?');
-	} else {
-		$('#corpoModal').hide();
-	}
-	$("#updateContrato").modal('show'); //modal de confirmacao
-}
 
 /// REUNE OS DADOS DOS BENS
 async function storeData() {
@@ -94,7 +82,7 @@ async function storeData() {
 
 	var arr_c = [];
 	$("#multiselect_to > option").each(function () {
-		arr_c.push(this.value); 
+		arr_c.push(this.value);
 	});
 
 	if (contr == 0) {
@@ -166,7 +154,29 @@ async function listarDadosContrato(id_url) {
 	$('#fimPagamento').val((data[0].data_fim_contrato ? data[0].data_fim_contrato.slice(0, -9) : ''));
 	(data[0].desconto_mapa == 'N' ? $('input[name="descMapa"]').hide() : '');
 	$("#loader").hide();
+	data_fim_contrato = data[0].data_fim_contrato;
+}
 
+
+// BOTAO SALVAR CHAMA MODAL DE CONFIRMACAO
+function confirmUpdate() {
+	if ($('#list').val() == 0) { // verifica cliente selecionado
+		$("#semCliente").modal('show'); return
+	}
+
+	$("#updateContrato").modal('show');
+
+	if (data_fim_contrato == null && $('#fimPagamento').val() != '') {
+		$('#corpoModal').text('A data de fim do contrato foi preenchida. Confirma ação?').fadeIn();
+	} else {
+		$('#corpoModal').hide();
+	}
+
+	if (data_fim_contrato != null && $('#fimPagamento').val() == '') {
+		$('#corpoModal').text('Deseja reativar o contrato?').fadeIn();
+	} else {
+		//	$('#corpoModal').hide();
+	}
 }
 
 //EXIBE/OCULTA INPUT VALOR DESCONTO MAPA    

@@ -1,4 +1,3 @@
-var fim_pagamento = '';
 
 $(document).on('click', '#btn-add', function (e) {
     e.preventDefault();
@@ -32,11 +31,36 @@ $(document).on('click', '.update', function (e) {
     $('#valor_pos_u').val($(this).attr("data-valor_pos"));
     $('#obs_u').val($(this).attr("data-obs"));
     $('#fimPagamento_u').val($(this).attr("data-fimPagamento"));
-    fim_pagamento = $(this).attr("data-fimPagamento");
+
 });
 
 
+$(document).on('click', '#update', function (e) {
 
+    
+    
+    storeContrato()
+
+
+    // var data = $("#update_form").serialize();
+    // $.ajax({
+    //     data: data,
+    //     type: "post",
+    //     url: '../controller/tipo_contrato_controller.php',
+    //     success: function (dataResult) {
+    //         var dataResult = JSON.parse(dataResult);
+    //         if (dataResult.statusCode == 200) {
+    //             $('#edit').modal('hide');
+    //             $("#ContratoAtualizado").modal('show');
+    //             // location.reload();
+    //         }
+    //         else if (dataResult.statusCode == 201) {
+    //             alert("Nenhum dado alterado :/");
+    //         }
+    //     }
+    // });
+
+});
 
 
 $(document).on("click", ".delete", function () {
@@ -89,23 +113,9 @@ $(document).ready(function () {
     })
 });
 
-$(document).on('click', '#update', function (e) {
 
-    if ($('#fimPagamento_u').val() != '' && fim_pagamento == '') {
-        $('#confirmModal').modal('show')
-		$('#corpoModal').text('A data de fim pagamento foi preenchida. Confirma ação?');
-        return
-	}
+function storeContrato() {
 
-    if (fim_pagamento != '' && $('#fimPagamento_u').val() == '') {
-        $('#confirmModal').modal('show')
-        $('#corpoModal').text('Deseja reativar o tipo de contrato?');
-        return
-    }
-    updateTipoContrato()
-});
-
-function updateTipoContrato() {
     var data = $("#update_form").serialize();
     $.ajax({
         data: data,
@@ -123,7 +133,28 @@ function updateTipoContrato() {
             }
         }
     });
+
 }
+// BOTAO SALVAR CHAMA MODAL DE CONFIRMACAO
+function confirmUpdate() {   
+
+    if ($('#fimPagamento_u').val() != '') {
+        $('#corpoModal').text('A data de fim do contrato foi preenchida. Confirma ação ?');
+    } else {
+        if (data_fim_contrato != null) {
+            $('#corpoModal').text('Deseja reativar o contrato?');
+        } else {
+            $('#corpoModal').hide();
+        }
+    }
+    $("#updateContrato").modal('show'); //modal de confirmacao
+}
+
+$('form#add_contrato_form').submit(function(e){
+    $(this).children('input[type=submit]').attr('disabled', 'disabled');
+    e.preventDefault(); 
+    return false;
+});
 
 function novoTipoContrato() {
     $("#add").modal('show');
@@ -137,28 +168,3 @@ function delContrato() {
 function confirmUpdate() {
     location.reload();
 }
-
-$(document).ready(function () {
-    $('.modal')
-        .on({
-            'show.bs.modal': function () {
-                var idx = $('.modal:visible').length;
-                $(this).css('z-index', 1040 + (10 * idx));
-            },
-            'shown.bs.modal': function () {
-                var idx = ($('.modal:visible').length) - 1; // raise backdrop after animation.
-                $('.modal-backdrop').not('.stacked')
-                    .css('z-index', 1039 + (10 * idx))
-                    .addClass('stacked');
-            },
-            'hidden.bs.modal': function () {
-                if ($('.modal:visible').length > 0) {
-                    // restore the modal-open class to the body element, so that scrolling works
-                    // properly after de-stacking a modal.
-                    setTimeout(function () {
-                        $(document.body).addClass('modal-open');
-                    }, 0);
-                }
-            }
-        });
-});
