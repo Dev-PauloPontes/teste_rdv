@@ -1,6 +1,7 @@
 var fim_pagamento = '';
 
 $(document).on('click', '#btn-add', function (e) {
+    $("#loader").show();
     e.preventDefault();
     var data = $("#add_contrato_form").serialize();
     $.ajax({
@@ -17,6 +18,7 @@ $(document).on('click', '#btn-add', function (e) {
             else if (dataResult.statusCode == 201) {
                 alert("Nenhum dado alterado :/");
             }
+            $("#loader").hide();
         }
     });
 
@@ -45,6 +47,7 @@ $(document).on("click", ".delete", function () {
 });
 
 $(document).on("click", "#delete", function (e) {
+    $("#loader").show();
     e.preventDefault();
     $.ajax({
         url: '../controller/tipo_contrato_controller.php',
@@ -58,6 +61,7 @@ $(document).on("click", "#delete", function (e) {
             $('#del').modal('hide');
             // $("#" + dataResult).remove();
             location.reload();
+            $("#loader").hide();
         }
     });
 
@@ -65,7 +69,7 @@ $(document).on("click", "#delete", function (e) {
 
 
 $(document).ready(function () {
-
+    $("#loader").show();
     $.ajax({
         url: '../controller/tipo_contrato_controller.php',
         data: { func: "list" },
@@ -85,6 +89,7 @@ $(document).ready(function () {
                     + '" title = "Editar" style = "font-size:24px; width: 40px;"></i></a></div></li>';
                 $('#list').append(li);
             });
+            $("#loader").hide();
         }
     })
 });
@@ -106,6 +111,7 @@ $(document).on('click', '#update', function (e) {
 });
 
 function updateTipoContrato() {
+    $("#loader").show();
     var data = $("#update_form").serialize();
     $.ajax({
         data: data,
@@ -117,11 +123,13 @@ function updateTipoContrato() {
                 $('#edit').modal('hide');
                 $("#end_Contrato").modal('show');
                 $('#mensage_e').text('Contrato Atualizado!');
-
+                $("#loader").hide();
                 // location.reload();
             }
             else if (dataResult.statusCode == 201) {
+                $("#loader").hide();
                 alert("Nenhum dado alterado :/");
+
             }
         }
     });
@@ -148,7 +156,7 @@ $(document).ready(function () {
                 $(this).css('z-index', 1040 + (10 * idx));
             },
             'shown.bs.modal': function () {
-                var idx = ($('.modal:visible').length) - 1; // raise backdrop after animation.
+                var idx = ($('.modal:visible').length) - 1;
                 $('.modal-backdrop').not('.stacked')
                     .css('z-index', 1039 + (10 * idx))
                     .addClass('stacked');

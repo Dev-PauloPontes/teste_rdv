@@ -5,13 +5,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="../css/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
     <link rel="icon" href="../img/favicons.png" />
     <title>Tipos de contrato</title>
 </head>
 
 <body>
+    <div class="row">
+        <div class="">
+            <img src="../img/loading.gif" class="loader" id="loader">
+        </div>
+    </div>
     <div class="container">
         <div class="row text-center">
             <div class="col-12 ">
@@ -160,7 +168,7 @@
                 <div class="modal-content">
                     <form>
                         <div class="modal-header">
-                            <h4 class="modal-title">Contrato Atualizado</h4>
+                            <h4 class="modal-title">Tipo de contrato</h4>
                             <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">×</button>
 
                         </div>
@@ -180,7 +188,7 @@
                 <div class="modal-content">
                     <form>
                         <div class="modal-header">
-                            <h4 class="modal-title">Atualizar Contrato? </h4>
+                            <h4 class="modal-title">Tipo de contrato</h4>
                             <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">x</button>
                         </div>
                         <div class="alert alert-danger" id="corpoModal" role="alert"></div>
@@ -194,9 +202,13 @@
         </div>
 
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.13/jquery.mask.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="../js/jquery.mask.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="../js/multiselect.js"></script>
 
     <script src="../service/tipo_contrato_service.js"></script>
 </body>
