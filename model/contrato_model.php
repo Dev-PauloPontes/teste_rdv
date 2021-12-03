@@ -15,8 +15,7 @@ class Contrato extends config
     public function listContratoId($contr)
     {
         try {
-            $sql = "SELECT * FROM tipo_contrato".( $contr > 0 ? " WHERE id_tipo_contrato = $contr;" : ";");
-           // echo $sql;
+            $sql = "SELECT * FROM tipo_contrato WHERE  data_encerramento IS NULL" . ($contr > 0 ? " AND id_tipo_contrato = $contr;" : ";");
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute();
             $rs = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -113,7 +112,7 @@ class Contrato extends config
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute([$id_cliente, $tipoContr, $descontoIntegral, $descontoPosterior, $mapa,  $descontoMapa, $valorDescontoMapa, $inicioPagamento]);
             $result_id = $this->pdo->lastInsertId();
-             
+
 
             foreach ($arr_s as  $id_bem_s) {
                 $this->err =   $this->updateBem_null($id_bem_s);
