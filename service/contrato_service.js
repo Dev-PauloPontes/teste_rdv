@@ -19,9 +19,7 @@ async function listarClientes(id) {
 	data.forEach(function (res) {
 		$("<option " + (id == res['id'] ? 'selected=true' : '') + ">").val(res['id']).text(res['nome']).appendTo('#list')
 	});
-	// " + (id == res['id'] ? 'selected=true' : (id != res['id'] && id_url ? "style='display: none;'" : '')) + "
 	if (id) listarBensOut(id)
-
 }
 
 
@@ -36,6 +34,7 @@ async function listarContratos(contr) {
 	data.forEach(function (data) {
 		$("<option >").val(data['id_tipo_contrato']).text(data['nome_tipo_contrato']).appendTo('#contSel');
 	});
+	$('#cover-spin').hide();
 	// " + (contr == data['id_tipo_contrato'] ? 'selected=true style="background: #5cb85c; color: #fff;"' : '') + "
 }
 
@@ -66,13 +65,12 @@ async function listarBensContr(id, contr) {
 	});
 
 	$('#count2').text(($('#multiselect_to option').length));
-
 }
 
 
 /// REUNE OS DADOS DOS BENS
 async function storeData() {
-	$("#loader").show();
+	$('#cover-spin').show();
 	contr = $('#contSel').val();
 
 	var arr_s = [];
@@ -87,12 +85,12 @@ async function storeData() {
 
 	if (contr == 0) {
 		$("#semTipoContrato").modal('show');
-		$("#loader").hide();
+		$('#cover-spin').hide();
 		return
 	}
 	storeContrato(contr, arr_c, arr_s)
 
-	$("#loader").hide();
+	//$('#cover-spin').hide();
 }
 
 //INSERE OU ATUALIZA CONTRATO
@@ -127,7 +125,7 @@ async function storeContrato(contr, arr_c, arr_s) {
 
 //CARREGA DADOS DO CONTRATO CASO EDITAR
 async function listarDadosContrato(id_url) {
-	$("#loader").show();
+	$('#cover-spin').show(0);
 
 	const response = await fetch("../controller/contrato_controller.php", {
 		method: 'POST',
@@ -153,7 +151,6 @@ async function listarDadosContrato(id_url) {
 	$('#inicioPagamento').val((data[0].data_inicio_pagamento ? data[0].data_inicio_pagamento.slice(0, -9) : ''));
 	$('#fimPagamento').val((data[0].data_fim_contrato ? data[0].data_fim_contrato.slice(0, -9) : ''));
 	(data[0].desconto_mapa == 'N' ? $('input[name="descMapa"]').hide() : '');
-	$("#loader").hide();
 	data_fim_contrato = data[0].data_fim_contrato;
 }
 
@@ -240,11 +237,12 @@ function erroForm(result_id) {
 		} else {
 			$('#confirmContrato').text('Contrato cadastrado com sucesso!');
 		}
+		$('#cover-spin').hide();
 	} else {
 		$("#erroContrato").modal('show');
 		$('#titleModalErro').text('Erro');
 		$('#erro').text('Erro ao cadastrar o contrato')
-		$("#loader").hide();
+		$('#cover-spin').hide();
 	}
 }
 

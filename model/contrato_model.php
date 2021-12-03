@@ -16,6 +16,7 @@ class Contrato extends config
     {
         try {
             $sql = "SELECT * FROM tipo_contrato".( $contr > 0 ? " WHERE id_tipo_contrato = $contr;" : ";");
+           // echo $sql;
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute();
             $rs = $stmt->fetchAll(PDO::FETCH_ASSOC);

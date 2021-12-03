@@ -3,7 +3,7 @@ var id_url = (url.search == '' ? '' : url.searchParams.get("id"));
 
 // CARREGA COMBO CLIENTES
 async function listarClientescontrato(id_url) {
-
+    $('#cover-spin').show();
     const response = await fetch('../controller/contrato_controller.php?func=listId')
     let data = await response.json();
 
@@ -14,13 +14,12 @@ async function listarClientescontrato(id_url) {
         $("<option " + (id_url == res['id'] ? 'selected=true' : '') + ">").val(res['id']).text(res['nome']).appendTo('#listContr');
     });
 
-    if (id_url) listarContratosAtivos(id_url)
+    if (id_url){ listarContratosAtivos(id_url) }else{ $('#cover-spin').hide(); }
 
 }
 
 //LISTA CONTRATOS DO CLIENTE SELECIONADO
 async function listarContratosAtivos(id_url) {
-    $("#loader").show();
     const response = await fetch('../controller/contrato_controller.php?func=listarContratoAtivo&id=' + id_url)
     let data = await response.json();
     var element = $('#listContratos');
@@ -35,7 +34,7 @@ async function listarContratosAtivos(id_url) {
             + '" title = "Editar" style = "font-size:24px; width: 40px;"></i></a></div></li>';
         $('#listContratos').append(li);
     });
-    $("#loader").hide();
+    $('#cover-spin').hide();
 }
 
 //CHAMA PAGINA DE EDITAR CONTRATO PASSANDO ID DO CONTRATO

@@ -15,11 +15,13 @@
 </head>
 
 <body>
-    <div class="row">
-        <div class="">
-            <img src="../img/loading.gif" class="loader" id="loader">
-        </div>
+    <!-- <div class="row">
+    <div class="">
+        <img src="../img/loading.gif" class="loader" id="loader">
     </div>
+</div> -->
+
+<div id="cover-spin"></div>
     <div class="container">
         <div class="row text-center">
             <div class="col-12 ">
