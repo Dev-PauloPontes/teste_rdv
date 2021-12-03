@@ -11,11 +11,11 @@ switch ($_REQUEST['func']) {
 	case 'edit':
 		$dataFim = $_REQUEST['fimPagamento'];
 		($dataFim == '' ? $dataFim = NULL : $dataFim);
-		$model->edit($_REQUEST['id_tipo_contrato'], $_REQUEST['nome_tipo_contrato'], $_REQUEST['cod_tipo_contrato'], $_REQUEST['meses'], $_REQUEST['valor'], $_REQUEST['valor_pos'], $_REQUEST['obs'], $dataFim);
+		$model->edit($_REQUEST['id_tipo_contrato'], $_REQUEST['nome_tipo_contrato'], $_REQUEST['cod_tipo_contrato'], $_REQUEST['meses'], str_replace(',', '.', $_REQUEST['valor']), str_replace(',', '.', $_REQUEST['valor_pos']), $_REQUEST['obs'], $dataFim);
 		break;
 
 	case 'add':
-		$model->add($_REQUEST['nome_tipo_contrato'], $_REQUEST['cod_tipo_contrato'], $_REQUEST['meses'], $_REQUEST['valor'], $_REQUEST['valor_pos'], $_REQUEST['obs']);
+		$model->add($_REQUEST['nome_tipo_contrato'], $_REQUEST['cod_tipo_contrato'], $_REQUEST['meses'], str_replace(',', '.', $_REQUEST['valor']), str_replace(',', '.', $_REQUEST['valor_pos']), $_REQUEST['obs']);
 		break;
 
 	case 'del':

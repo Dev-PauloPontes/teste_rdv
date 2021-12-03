@@ -175,7 +175,7 @@ function confirmUpdate() {
 	} else {
 		$('#corpoModal').hide();
 	}
-	console.log(data_fim_contrato)
+	
 	if (data_fim_contrato != null && $('#fimPagamento').val() == '' && id_url) {
 		$('#corpoModal').text('Deseja reativar o contrato?').fadeIn();
 	} else {
@@ -246,16 +246,6 @@ function erroForm(result_id) {
 	}
 }
 
-// function erroUpdateBem(message) {
-// 	if (message == '') {
-// 		$("#loader").hide();
-// 	} else {
-// 		$("#erroContrato").modal('show');
-// 		$('#titleModalErro').text('Erro');
-// 		$('#erro').text('Erro ao cadastrar o(s) imei(s) do contrato')
-// 		$("#loader").hide();
-// 	}
-//}
 
 
 

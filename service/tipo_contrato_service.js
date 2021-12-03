@@ -1,7 +1,7 @@
 var fim_pagamento = '';
 
 $(document).on('click', '#btn-add', function (e) {
-    $("#loader").show();
+    $('#cover-spin').show();
     e.preventDefault();
     var data = $("#add_contrato_form").serialize();
     $.ajax({
@@ -14,11 +14,13 @@ $(document).on('click', '#btn-add', function (e) {
                 $('#add').modal('hide');
                 $("#end_Contrato").modal('show');
                 $('#mensage_e').text('Novo contrato incluído!');
+                $('#cover-spin').hide();
             }
             else if (dataResult.statusCode == 201) {
                 alert("Nenhum dado alterado :/");
+                $('#cover-spin').hide();
             }
-            $("#loader").hide();
+            
         }
     });
 
@@ -47,7 +49,7 @@ $(document).on("click", ".delete", function () {
 });
 
 $(document).on("click", "#delete", function (e) {
-    $("#loader").show();
+    $('#cover-spin').show();
     e.preventDefault();
     $.ajax({
         url: '../controller/tipo_contrato_controller.php',
@@ -61,7 +63,6 @@ $(document).on("click", "#delete", function (e) {
             $('#del').modal('hide');
             // $("#" + dataResult).remove();
             location.reload();
-            $("#loader").hide();
         }
     });
 
@@ -69,7 +70,7 @@ $(document).on("click", "#delete", function (e) {
 
 
 $(document).ready(function () {
-    $("#loader").show();
+    $('#cover-spin').show();
     $.ajax({
         url: '../controller/tipo_contrato_controller.php',
         data: { func: "list" },
@@ -82,14 +83,14 @@ $(document).ready(function () {
                     + '" data-nome_tipo_contrato="' + data.nome_tipo_contrato
                     + '" data-cod_tipo_contrato="' + data.cod_tipo_contrato
                     + '" data-meses="' + data.meses
-                    + '" data-valor="' + data.valor
-                    + '" data-valor_pos="' + data.valor_pos
+                    + '" data-valor="' + formataMoeda(data.valor)
+                    + '" data-valor_pos="' + formataMoeda(data.valor_pos)
                     + '" data-obs="' + data.obs
                     + '" data-fimPagamento="' + (data.data_encerramento ? data.data_encerramento.slice(0, -9) : '')
                     + '" title = "Editar" style = "font-size:24px; width: 40px;"></i></a></div></li>';
                 $('#list').append(li);
             });
-            $("#loader").hide();
+            $('#cover-spin').hide();
         }
     })
 });
@@ -111,7 +112,7 @@ $(document).on('click', '#update', function (e) {
 });
 
 function updateTipoContrato() {
-    $("#loader").show();
+    $('#cover-spin').show();
     var data = $("#update_form").serialize();
     $.ajax({
         data: data,
@@ -123,13 +124,12 @@ function updateTipoContrato() {
                 $('#edit').modal('hide');
                 $("#end_Contrato").modal('show');
                 $('#mensage_e').text('Contrato Atualizado!');
-                $("#loader").hide();
+                $('#cover-spin').hide();
                 // location.reload();
             }
             else if (dataResult.statusCode == 201) {
-                $("#loader").hide();
+                $('#cover-spin').hide();
                 alert("Nenhum dado alterado :/");
-
             }
         }
     });
@@ -168,3 +168,13 @@ $(document).ready(function () {
             }
         });
 });
+
+
+//FORMATA MOEDA
+$(".real").mask('#.##0,00', {
+	reverse: true
+});
+function formataMoeda(valor) {
+	var valor_c = parseFloat(valor).toLocaleString('pt-br', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+	return valor_c;
+}
