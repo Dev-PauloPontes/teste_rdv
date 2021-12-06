@@ -11,15 +11,9 @@
     <link rel="icon" href="../img/favicons.png" />
     <title>Listar Contratos</title>
 </head>
-<!-- <div class="row">
-    <div class="">
-        <img src="../img/loading.gif" class="loader" id="loader">
-    </div>
-</div> -->
-
-<div id="cover-spin"></div>
 
 <body>
+    <div id="cover-spin"></div>
     <div class="container">
 
         <div class="row text-center">
@@ -38,7 +32,9 @@
         <div class="row">
             <div class="col mt-1">
                 <div class="form-group">
-                    <label><h6>Empresas</h6></label>
+                    <label>
+                        <h6>Empresas</h6>
+                    </label>
                     <select class="form-control" id="listContr" onchange="listarClientescontrato(this.value)">
                         <option value="0">Selecione</option>
                     </select>

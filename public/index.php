@@ -5,8 +5,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="../css/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/styles.css">
@@ -14,34 +12,30 @@
     <title>Tipos de contrato</title>
 </head>
 
-<body id="t">
-    <!-- <div class="row">
-    <div class="">
-        <img src="../img/loading.gif" class="loader" id="loader">
-    </div>
-</div> -->
+<body>
     <div id="cover-spin"></div>
-
+    
     <div class="container">
         <div class="row text-center">
             <div class="col-12 ">
                 <h2>Cadastro - Tipo de Contrato</h2>
             </div>
         </div>
-        <div class="col-12">
-            <ul>
-                <li class="list-group-item" style="list-style-type: none;">
+        <div class="row">
+            <div class="col-12">
+                <div class="list-group-item" style="list-style-type: none;">
                     <button type="button" onclick="novoTipoContrato()" class="btn btn-success" data-dismiss=" modal">Novo Tipo Contrato</button>
                     <a href="listar_contratos" class="btn btn-outline-info"><span>Voltar</span></a>
-                </li>
-            </ul>
-            <ul id="list">
-
-            </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row pt-2 pb-2 ">
+            <div class="col-12" id="list">
+            </div>
         </div>
 
         <!--  Modal -->
-        <div id="add" class="modal fade">
+        <div id="add" class="modal fade" data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <form id="add_contrato_form">
@@ -93,7 +87,7 @@
 
 
         <!-- Edit Modal HTML -->
-        <div id="edit" class="modal fade">
+        <div id="edit" class="modal fade" data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <form id="update_form">
@@ -178,7 +172,7 @@
                             <p id="mensage_e"></p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button"  class="btn btn-secondary" data-dismiss="modal">OK</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">OK</button>
                         </div>
                     </form>
                 </div>

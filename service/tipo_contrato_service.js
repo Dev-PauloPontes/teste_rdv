@@ -77,7 +77,7 @@ function listTipoContrato() {
         .then(response => response.json())
         .then(data => {
             data.forEach(function (data) {
-                var li = '<li class="list-group-item">' + data.nome_tipo_contrato + (data.data_encerramento ? '<span class="badge badge-danger ml-3" > Inativo </span>' : '') + '<div class="float-right" > '
+                var li = '<li class="list-group-item" style="height: 48px;">' + data.nome_tipo_contrato + (data.data_encerramento ? '<span class="badge badge-danger ml-3" > Inativo </span>' : '') + '<div class="float-right" > '
                     + ' <a href="#" onclick="editContrato()" class="edit" data-toggle="modal"><i class="fa fa-edit  update" "  data-toggle="tooltip" '
                     + ' data-id_tipo_contrato="' + data.id_tipo_contrato
                     + '" data-nome_tipo_contrato="' + data.nome_tipo_contrato
@@ -115,16 +115,18 @@ function updateTipoContrato() {
     var data = $("#update_form").serialize();
     $.ajax({
         data: data,
-        type: "post",
+        type: "POST",
         url: '../controller/tipo_contrato_controller.php',
         success: function (dataResult) {
             var dataResult = JSON.parse(dataResult);
             if (dataResult.statusCode == 200) {
                 $('#edit').modal('hide');
                 $("#list").load(window.location.href + " #list");
-                setTimeout(listTipoContrato, 120);
-                $("#end_Contrato").modal('show');
-                $('#mensage_e').text('Contrato Atualizado!');
+                setTimeout(function () {
+                    listTipoContrato()
+                    $('#mensage_e').text('Contrato Atualizado!');
+                    $("#end_Contrato").modal('show');
+                }, 120);
             }
             else if (dataResult.statusCode == 201) {
                 $('#cover-spin').hide();
@@ -170,7 +172,6 @@ $(document).ready(function () {
             }
         });
 });
-
 
 //FORMATA MOEDA
 $(".real").mask('#.##0,00', {
