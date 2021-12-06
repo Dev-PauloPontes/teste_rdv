@@ -1,6 +1,6 @@
 var url = new URL(location.href);
 var id_url = (url.search == '' ? '' : url.searchParams.get("id"));
-(isNaN(id_url) ? listContrato() : '')
+(isNaN(id_url) ? listContratos() : '')
 
 var erro = '';
 var textoCorpo = '';
@@ -22,7 +22,6 @@ async function listarClientes(id) {
 	if (id) listarBensOut(id)
 }
 
-
 /// CARREGA COMBO TIPO DE CONTRATO
 async function listarContratos(contr) {
 	if (id_url) $('#contSel').prop('disabled', 'disabled');
@@ -35,7 +34,6 @@ async function listarContratos(contr) {
 		$("<option >").val(data['id_tipo_contrato']).text(data['nome_tipo_contrato']).appendTo('#contSel');
 	});
 	$('#cover-spin').hide();
-	// " + (contr == data['id_tipo_contrato'] ? 'selected=true style="background: #5cb85c; color: #fff;"' : '') + "
 }
 
 ///CARREGA DISPOSITIVOS SEM CONTRATO
@@ -67,7 +65,6 @@ async function listarBensContr(id, contr) {
 	$('#count2').text(($('#multiselect_to option').length));
 }
 
-
 /// REUNE OS DADOS DOS BENS
 async function storeData() {
 	$('#cover-spin').show();
@@ -89,7 +86,6 @@ async function storeData() {
 		return
 	}
 	storeContrato(contr, arr_c, arr_s)
-
 	//$('#cover-spin').hide();
 }
 
@@ -105,7 +101,6 @@ async function storeContrato(contr, arr_c, arr_s) {
 	var inicioPagamento = $('#inicioPagamento').val();
 	var fimPagamento = $('#fimPagamento').val();
 
-
 	const response = await fetch('../controller/contrato_controller.php', {
 		method: 'POST',
 		headers: {
@@ -115,17 +110,16 @@ async function storeContrato(contr, arr_c, arr_s) {
 		body: 'func=storeFormContrato&descontoIntegral=' + descontoIntegral + '&descontoPosterior=' + descontoPosterior + '&mapa=' + mapa + '&descontoMapa='
 			+ descontoMapa + '&valorDescontoMapa=' + valorDescontoMapa + '&inicioPagamento=' + inicioPagamento + '&fimPagamento=' + fimPagamento + '&contr='
 			+ contr + '&id_cliente=' + id_cliente + '&id_contr=' + id_url + '&arr_s=' + arr_s + '&arr_c=' + arr_c
-
 	})
 
 	let result_id = await response.json();
 
-	erroForm(result_id)
+	endForm(result_id)
 }
 
 //CARREGA DADOS DO CONTRATO CASO EDITAR
 async function listarDadosContrato(id_url) {
-	$('#cover-spin').show(0);
+	$('#cover-spin').show();
 
 	const response = await fetch("../controller/contrato_controller.php", {
 		method: 'POST',
@@ -137,7 +131,7 @@ async function listarDadosContrato(id_url) {
 	})
 
 	let data = await response.json();
-	if (data == '') listContrato()
+	if (data == '') listContratos()
 
 	listarBensContr(data[0].cliente, data[0].id_contrato)
 	listarClientes(data[0].cliente)
@@ -154,7 +148,6 @@ async function listarDadosContrato(id_url) {
 	data_fim_contrato = data[0].data_fim_contrato;
 }
 
-
 // BOTAO SALVAR CHAMA MODAL DE CONFIRMACAO
 function confirmUpdate() {
 	if ($('#list').val() == 0) { // verifica cliente selecionado
@@ -162,7 +155,7 @@ function confirmUpdate() {
 		$('#messageValidacao').text('Selecione algum cliente').fadeIn();
 		return
 	}
-	if ($('#contSel').val() == 0) { // verifica cliente selecionado
+	if ($('#contSel').val() == 0) { // verifica contrato selecionado
 		$("#semValidacao").modal('show');
 		$('#messageValidacao').text('Selecione algum contrato').fadeIn();
 		return
@@ -224,19 +217,16 @@ if (id_url) {
 }
 
 ///VOLTAR PARA LISTA DE CONTRATOS 
-function listContrato() {
-	location.replace("listar_contratos" + (id_url ? "?id=" + $('#list').val() : ''));
+function listContratos() {
+	$('#cover-spin').show();
+	location.replace("listar_contratos" + (id_url ? ($('#list').val() != null ? "?id=" + $('#list').val() : '' ) : ''));
 }
 
 ///TRATAMENTO EM CASO DE ERROS
-function erroForm(result_id) {
+function endForm(result_id) {
 	if (result_id >= 0) {
 		$("#ContratoAtualizado").modal('show');
-		if (id_url) {
-			$('#confirmContrato').text('Contrato atualizado com sucesso!');
-		} else {
-			$('#confirmContrato').text('Contrato cadastrado com sucesso!');
-		}
+		$('#confirmContrato').text('Contrato ' + (id_url ? 'atualizado' : 'cadastrado' ) + ' com sucesso!');
 		$('#cover-spin').hide();
 	} else {
 		$("#erroContrato").modal('show');

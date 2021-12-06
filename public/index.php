@@ -14,7 +14,7 @@
     <title>Tipos de contrato</title>
 </head>
 
-<body>
+<body id="t">
     <!-- <div class="row">
     <div class="">
         <img src="../img/loading.gif" class="loader" id="loader">
@@ -178,7 +178,7 @@
                             <p id="mensage_e"></p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" onclick="confirmUpdate()" class="btn btn-secondary" data-dismiss="modal">OK</button>
+                            <button type="button"  class="btn btn-secondary" data-dismiss="modal">OK</button>
                         </div>
                     </form>
                 </div>
@@ -208,7 +208,7 @@
     <script src="../js/jquery.mask.js"></script>
     <script src="../js/bootstrap.bundle.min.js"></script>
     <script src="../js/multiselect.js"></script>
-
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../service/tipo_contrato_service.js"></script>
 </body>
 

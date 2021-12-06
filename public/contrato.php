@@ -170,7 +170,7 @@
         <div class="row mb-5">
             <div class="col">
                 <div class="pull-right">
-                    <a href="JavaScript:void(0);" class="btn btn-default" onclick="listContrato()"><span>Voltar</span></a>
+                    <a href="JavaScript:void(0);" class="btn btn-default" onclick="listContratos()"><span>Voltar</span></a>
                     <a href="JavaScript:void(0);" class="btn btn-dark" onclick="confirmUpdate()" id="contrato" style="margin-left: 10px;">Salvar<span></a>
                 </div>
             </div>
@@ -208,7 +208,7 @@
                             <p id="confirmContrato"></p>
                         </div>
                         <div class="modal-footer">
-                            <a href="JavaScript:void(0);" onclick="listContrato()" class="btn btn-secondary" data-dismiss="modal">OK</a>
+                            <a href="JavaScript:void(0);" onclick="listContratos()" class="btn btn-secondary" data-dismiss="modal">OK</a>
                         </div>
                     </form>
                 </div>

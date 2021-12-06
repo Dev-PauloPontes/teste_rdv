@@ -14,13 +14,16 @@ $(document).on('click', '#btn-add', function (e) {
                 $('#add').modal('hide');
                 $("#end_Contrato").modal('show');
                 $('#mensage_e').text('Novo contrato incluído!');
+                $("#list").load(window.location.href + " #list");
+
+                listTipoContrato()
                 $('#cover-spin').hide();
             }
             else if (dataResult.statusCode == 201) {
                 alert("Nenhum dado alterado :/");
                 $('#cover-spin').hide();
             }
-            
+
         }
     });
 
@@ -68,15 +71,12 @@ $(document).on("click", "#delete", function (e) {
 
 });
 
-
-$(document).ready(function () {
+function listTipoContrato() {
     $('#cover-spin').show();
-    $.ajax({
-        url: '../controller/tipo_contrato_controller.php',
-        data: { func: "list" },
-        success: function (response) {
-            const obj = JSON.parse(response);
-            $.each(obj, function (i, data) {
+    fetch('../controller/tipo_contrato_controller.php?func=list')
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(function (data) {
                 var li = '<li class="list-group-item">' + data.nome_tipo_contrato + (data.data_encerramento ? '<span class="badge badge-danger ml-3" > Inativo </span>' : '') + '<div class="float-right" > '
                     + ' <a href="#" onclick="editContrato()" class="edit" data-toggle="modal"><i class="fa fa-edit  update" "  data-toggle="tooltip" '
                     + ' data-id_tipo_contrato="' + data.id_tipo_contrato
@@ -91,9 +91,8 @@ $(document).ready(function () {
                 $('#list').append(li);
             });
             $('#cover-spin').hide();
-        }
-    })
-});
+        })
+}
 
 $(document).on('click', '#update', function (e) {
 
@@ -122,18 +121,21 @@ function updateTipoContrato() {
             var dataResult = JSON.parse(dataResult);
             if (dataResult.statusCode == 200) {
                 $('#edit').modal('hide');
+                $("#list").load(window.location.href + " #list");
+                setTimeout(listTipoContrato, 120);
                 $("#end_Contrato").modal('show');
                 $('#mensage_e').text('Contrato Atualizado!');
-                $('#cover-spin').hide();
-                // location.reload();
             }
             else if (dataResult.statusCode == 201) {
                 $('#cover-spin').hide();
-                alert("Nenhum dado alterado :/");
+                // alert("Nenhum dado alterado :/");
+                swal("Nenhum dado alterado!");
             }
         }
     });
 }
+
+listTipoContrato()
 
 function novoTipoContrato() {
     $("#add").modal('show');
@@ -172,9 +174,9 @@ $(document).ready(function () {
 
 //FORMATA MOEDA
 $(".real").mask('#.##0,00', {
-	reverse: true
+    reverse: true
 });
 function formataMoeda(valor) {
-	var valor_c = parseFloat(valor).toLocaleString('pt-br', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-	return valor_c;
+    var valor_c = parseFloat(valor).toLocaleString('pt-br', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    return valor_c;
 }
